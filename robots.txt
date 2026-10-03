@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /thanks.html
+Disallow: /downloads/
+Disallow: /intake.html
 
 Sitemap: https://predragckautovic.github.io/tracenotice-public/sitemap.xml
