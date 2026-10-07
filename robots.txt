@@ -6,4 +6,4 @@ Disallow: /intake.html
 Disallow: /agency-intake.html
 Disallow: /agency-mini-scan.html
 
-Sitemap: https://predragckautovic.github.io/tracenotice-public/sitemap.xml
+Sitemap: https://tracenotice.com/sitemap.xml
