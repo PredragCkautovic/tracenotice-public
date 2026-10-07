@@ -86,3 +86,12 @@ button, input, select, textarea { font: inherit; }
   opacity: .035;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E");
 }
+
+/* Primary green actions: always use dark copy/icons for accessible contrast. */
+.cta-green {
+  background-color: #A6E878 !important;
+  color: #07100e !important;
+}
+.cta-green *, .cta-green svg {
+  color: inherit !important;
+}

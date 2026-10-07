@@ -46,7 +46,7 @@ export default function Home() {
             <p className="mt-7 max-w-[620px] text-[17px] leading-7 text-white/72 md:text-[18px]">TraceNotice turns AI transparency questions into exact implementation work, acceptance tests, and retained evidence—before the client handoff becomes a compliance scramble.</p>
 
             <div className="mt-8 flex max-w-[720px] flex-wrap gap-3">
-              <Link href="/checkout?plan=snapshot" className="group inline-flex min-w-[220px] items-center justify-between gap-4 rounded-xl bg-[#A6E878] px-5 py-4 text-[#07100e] shadow-[0_16px_38px_rgba(0,0,0,.22)] transition hover:-translate-y-0.5 hover:brightness-95">
+              <Link href="/checkout?plan=snapshot" className="cta-green group inline-flex min-w-[220px] items-center justify-between gap-4 rounded-xl bg-[#A6E878] px-5 py-4 text-[#07100e] shadow-[0_16px_38px_rgba(0,0,0,.22)] transition hover:-translate-y-0.5 hover:brightness-95">
                 <span><span className="block text-[12px] font-black uppercase tracking-[.1em] opacity-70">Fastest start</span><span className="mt-1 block text-[14px] font-black">Fix one AI surface — €190</span></span>
                 <ArrowRight size={17} className="transition group-hover:translate-x-1"/>
               </Link>
@@ -112,7 +112,7 @@ export default function Home() {
             <p className="text-[11px] font-extrabold uppercase tracking-[.19em] text-[#A6E878]">Founding agency release gate</p>
             <h2 className="mt-4 max-w-[500px] text-balance text-[clamp(2.3rem,4vw,4rem)] font-black leading-[1.02] tracking-[-.055em]">€490 pilot for up to 3 public client AI surfaces</h2>
             <p className="mt-6 max-w-[520px] text-[16px] leading-7 text-white/64">A practical, implementation-focused package to help agencies ship with confidence and meet AI transparency requirements with a concrete technical handoff.</p>
-            <Link href="/checkout?plan=audit" className="mt-7 inline-flex items-center gap-2 rounded-xl bg-[#A6E878] px-5 py-3.5 text-[13px] font-extrabold text-[#07100e] transition hover:-translate-y-0.5 hover:brightness-95">Start agency pilot <ArrowRight size={15}/></Link>
+            <Link href="/checkout?plan=audit" className="cta-green mt-7 inline-flex items-center gap-2 rounded-xl bg-[#A6E878] px-5 py-3.5 text-[13px] font-extrabold text-[#07100e] transition hover:-translate-y-0.5 hover:brightness-95">Start agency pilot <ArrowRight size={15}/></Link>
             <p className="mt-4 text-[11px] leading-5 text-white/46">Payment is processed on PayPal. TraceNotice does not handle card details.</p>
           </div>
 
@@ -161,7 +161,7 @@ export default function Home() {
               <p className="mt-2 text-4xl font-black tracking-[-.055em]">€190</p>
               <p className="mt-3 text-[14px] leading-6 text-white/58">Ideal for a focused use case or an initial release review.</p>
               <div className="mt-6 space-y-3">{snapshot.bullets.slice(0,4).map(x=><p key={x} className="flex gap-2 text-[13px] font-semibold text-white/72"><Check size={15} className="mt-0.5 text-[#A6E878]"/>{x}</p>)}</div>
-              <Link href="/checkout?plan=snapshot" className="mt-8 flex items-center justify-center gap-2 rounded-xl bg-[#A6E878] px-4 py-3.5 text-[13px] font-black text-[#07100e] transition hover:-translate-y-0.5 hover:brightness-95">Start €190 review <ArrowRight size={14}/></Link>
+              <Link href="/checkout?plan=snapshot" className="cta-green mt-8 flex items-center justify-center gap-2 rounded-xl bg-[#A6E878] px-4 py-3.5 text-[13px] font-black text-[#07100e] transition hover:-translate-y-0.5 hover:brightness-95">Start €190 review <ArrowRight size={14}/></Link>
               <p className="mt-3 text-center text-[12px] font-medium text-white/52">One public URL · PayPal · 24h target</p>
             </article>
 
@@ -171,7 +171,7 @@ export default function Home() {
               <p className="mt-2 text-4xl font-black tracking-[-.055em]">€490</p>
               <p className="mt-3 text-[14px] leading-6 text-white/62">For agencies with up to 3 public client AI surfaces.</p>
               <div className="mt-6 space-y-3">{audit.bullets.slice(0,5).map(x=><p key={x} className="flex gap-2 text-[13px] font-semibold text-white/78"><Check size={15} className="mt-0.5 text-[#A6E878]"/>{x}</p>)}</div>
-              <Link href="/checkout?plan=audit" className="mt-8 flex items-center justify-center gap-2 rounded-xl border border-[#A6E878]/35 bg-[#A6E878]/10 px-4 py-3.5 text-[13px] font-extrabold text-[#CBEFAF] transition hover:bg-[#A6E878]/15">Start agency pilot — €490 <ArrowRight size={14}/></Link>
+              <Link href="/checkout?plan=audit" className="cta-green mt-8 flex items-center justify-center gap-2 rounded-xl bg-[#A6E878] px-4 py-3.5 text-[13px] font-extrabold text-[#07100e] transition hover:brightness-95">Start agency pilot — €490 <ArrowRight size={14}/></Link>
             </article>
 
             <article className="glass-soft rounded-[22px] p-6">
@@ -195,7 +195,7 @@ export default function Home() {
             <p className="mt-4 max-w-[690px] text-[14px] leading-6 text-white/58">Ship innovative AI experiences with clear implementation work, acceptance criteria, and retained release evidence.</p>
           </div>
           <div className="md:text-right">
-            <Link href="/checkout?plan=audit" className="inline-flex items-center gap-2 rounded-xl bg-[#A6E878] px-6 py-4 text-[13px] font-extrabold text-[#07100e] transition hover:-translate-y-0.5 hover:brightness-95">Start your pilot <ArrowRight size={15}/></Link>
+            <Link href="/checkout?plan=audit" className="cta-green inline-flex items-center gap-2 rounded-xl bg-[#A6E878] px-6 py-4 text-[13px] font-extrabold text-[#07100e] transition hover:-translate-y-0.5 hover:brightness-95">Start your pilot <ArrowRight size={15}/></Link>
             <div className="mt-3"><Link href="/scope-check" className="text-[11px] font-bold text-white/60 hover:text-white">Or get a free scope check →</Link></div>
           </div>
         </div>

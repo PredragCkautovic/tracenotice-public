@@ -27,7 +27,7 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <Link href="/checkout?plan=snapshot" className="inline-flex items-center gap-2 rounded-xl bg-[#A6E878] px-5 py-3 text-[13px] font-extrabold text-[#07100e] shadow-[0_10px_28px_rgba(0,0,0,.2)] transition hover:-translate-y-0.5 hover:brightness-95">
+        <Link href="/checkout?plan=snapshot" className="cta-green inline-flex items-center gap-2 rounded-xl bg-[#A6E878] px-5 py-3 text-[13px] font-extrabold text-[#07100e] shadow-[0_10px_28px_rgba(0,0,0,.2)] transition hover:-translate-y-0.5 hover:brightness-95">
           Start €190 review <ArrowRight size={15}/>
         </Link>
       </div>
