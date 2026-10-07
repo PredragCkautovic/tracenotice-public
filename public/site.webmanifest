@@ -1,0 +1,13 @@
+{
+  "name": "TraceNotice",
+  "short_name": "TraceNotice",
+  "description": "EU AI Act Article 50 implementation support for public AI surfaces.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#06100e",
+  "theme_color": "#06100e",
+  "icons": [
+    { "src": "/logo-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}

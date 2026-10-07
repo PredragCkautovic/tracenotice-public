@@ -11,6 +11,8 @@ export const metadata: Metadata = {
   description: "Article 50 implementation support for public AI chat, voice and generative AI surfaces: disclosure, acceptance criteria and release evidence.",
   applicationName: "TraceNotice",
   category: "technology",
+  manifest: "/site.webmanifest",
+  icons: { icon: "/favicon.ico", apple: "/apple-touch-icon.png" },
   keywords: ["EU AI Act Article 50", "Article 50 compliance", "AI transparency", "AI chatbot disclosure", "voice AI disclosure", "AI-generated content labelling", "AI compliance"],
   alternates: { canonical: "/" },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },
@@ -23,7 +25,7 @@ export const viewport: Viewport = { width: "device-width", initialScale: 1, them
 const structuredData = {
   "@context": "https://schema.org",
   "@graph": [
-    { "@type": "Organization", "@id": `${site.url}/#organization`, name: "TraceNotice", url: site.url, logo: `${site.url}/favicon.ico`, description: "Technical implementation support for public AI transparency surfaces under the EU AI Act." },
+    { "@type": "Organization", "@id": `${site.url}/#organization`, name: "TraceNotice", url: site.url, logo: `${site.url}/logo-512.png`, description: "Technical implementation support for public AI transparency surfaces under the EU AI Act." },
     { "@type": "WebSite", "@id": `${site.url}/#website`, url: site.url, name: "TraceNotice", publisher: { "@id": `${site.url}/#organization` }, inLanguage: "en" },
     { "@type": "Service", "@id": `${site.url}/#service`, name: "TraceNotice AI transparency implementation review", provider: { "@id": `${site.url}/#organization` }, areaServed: "European Union", serviceType: "AI transparency implementation support", description: "Public-surface review, implementation brief, acceptance criteria and release-evidence checklist for AI chat, voice and generative AI products." }
   ]
