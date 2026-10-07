@@ -59,6 +59,9 @@ export default function Home() {
             <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-[13px] font-semibold text-white/56">
               <span>Public URL only</span><span>PayPal checkout</span><span>24h target on €190 review</span><span>No production credentials</span>
             </div>
+            <a href="https://digital-strategy.ec.europa.eu/en/faqs/transparency-obligations-under-article-50-ai-act" target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center gap-2 text-[12px] font-bold text-white/62 transition hover:text-white">
+              Article 50 applies since 2 August 2026 · EU Commission guidance <ArrowRight size={13}/>
+            </a>
           </div>
 
           <div className="relative z-10 lg:pl-4">
