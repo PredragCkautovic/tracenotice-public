@@ -1,0 +1,29 @@
+RewriteEngine On
+
+# Canonical HTTPS + apex host.
+RewriteCond %{HTTPS} !=on [OR]
+RewriteCond %{HTTP_HOST} ^www\.tracenotice\.com$ [NC]
+RewriteRule ^ https://tracenotice.com%{REQUEST_URI} [R=301,L]
+
+# Preserve URLs used by previous outreach/bookmarks.
+RewriteRule ^index\.html$ / [R=301,L]
+RewriteRule ^agency\.html$ /agency/ [R=301,L]
+RewriteRule ^agency-intake\.html$ /checkout/?plan=audit [R=301,L]
+RewriteRule ^agency-mini-scan\.html$ /scope-check/ [R=301,L]
+RewriteRule ^scope-check\.html$ /scope-check/ [R=301,L]
+RewriteRule ^intake\.html$ /scope-check/ [R=301,L]
+RewriteRule ^checkout\.html$ /checkout/ [R=301,L]
+RewriteRule ^sample\.html$ /sample/ [R=301,L]
+RewriteRule ^partners\.html$ /partners/ [R=301,L]
+RewriteRule ^investors\.html$ /investors/ [R=301,L]
+RewriteRule ^privacy\.html$ /privacy/ [R=301,L]
+RewriteRule ^security\.html$ /security/ [R=301,L]
+RewriteRule ^terms\.html$ /terms/ [R=301,L]
+RewriteRule ^thanks\.html$ /thanks/ [R=301,L]
+RewriteRule ^reply\.html$ /contact/ [R=301,L]
+RewriteRule ^app\.html$ /partners/ [R=301,L]
+RewriteRule ^article-50-(chatbot-disclosure|voice-agent-disclosure|synthetic-content-marking)\.html$ /sample/ [R=301,L]
+
+# Static Next export: serve directory index files for clean routes.
+DirectoryIndex index.html
+Options -Indexes

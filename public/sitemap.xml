@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://tracenotice.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://tracenotice.com/agency/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://tracenotice.com/partners/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://tracenotice.com/investors/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://tracenotice.com/sample/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://tracenotice.com/scope-check/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://tracenotice.com/privacy/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://tracenotice.com/terms/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://tracenotice.com/security/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+</urlset>
