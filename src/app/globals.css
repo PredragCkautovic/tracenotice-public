@@ -95,3 +95,17 @@ button, input, select, textarea { font: inherit; }
 .cta-green *, .cta-green svg {
   color: inherit !important;
 }
+
+
+/* Responsive interaction hardening for phone/tablet layouts. */
+main { min-width: 0; }
+summary::-webkit-details-marker { display: none; }
+button, a, summary { touch-action: manipulation; }
+@media (max-width: 640px) {
+  .hero-orb { width: 300px; height: 300px; right: -150px; opacity: .26; }
+  .mesh-wave { opacity: .16; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+}
