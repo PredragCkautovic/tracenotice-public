@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://predragckautovic.github.io/tracenotice-public/sitemap.xml

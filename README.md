@@ -1,24 +1,36 @@
-# TraceNotice
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-TraceNotice is a productized technical implementation-evidence service for EU AI Act Article 50 transparency work on public AI, voice-agent and generative-content surfaces.
+## Getting Started
 
-## Current offers
+First, run the development server:
 
-- €190 Surface Snapshot — one public AI surface, target delivery within 24 hours after complete intake.
-- €490 Agency Pilot — up to three public client surfaces, with client-ready / white-label-ready implementation briefs.
-- €2,500 Remediation Sprint — coordinated implementation support for one product or deployment.
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-## Public product
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-The public product is intentionally static and stable on GitHub Pages. It does not depend on an ephemeral runtime tunnel.
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-- `index.html` — commercial homepage and pricing
-- `app.html` — 60-second Article 50 scope check
-- `sample.html` — sample implementation-evidence report
-- `delivery.html` — intake, turnaround, deliverables and scope limits
-- `agency.html` — agency pilot and partner positioning
-- `checkout.html` — stable PayPal handoff
-- `reply.html` — non-confidential public contact / intake route
-- Article 50 implementation guides for chatbot, voice-agent and synthetic-content surfaces
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-Technical / informational service only — not legal advice, certification or a legal compliance determination.
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
