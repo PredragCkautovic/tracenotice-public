@@ -24,20 +24,20 @@ export function ScopeChecker() {
 
   return (
     <div className="rounded-[2rem] border border-white/10 bg-[#0c1714] p-5 shadow-2xl md:p-8">
-      <div className="mb-7 flex items-center justify-between gap-4"><div><p className="text-xs font-black uppercase tracking-[.18em] text-[#d9ff58]">2-minute scope check</p><h3 className="mt-2 text-2xl font-black">Should this surface enter a release review?</h3></div><span className="rounded-full border border-white/10 px-3 py-1 text-xs font-bold text-white/50">{completed}/4</span></div>
+      <div className="mb-7 flex items-center justify-between gap-4"><div><p className="text-xs font-black uppercase tracking-[.18em] text-[#A6E878]">2-minute scope check</p><h3 className="mt-2 text-2xl font-black">Should this surface enter a release review?</h3></div><span className="rounded-full border border-white/10 px-3 py-1 text-xs font-bold text-white/64">{completed}/4</span></div>
       <div className="space-y-3">
         {questions.map((item, i) => (
           <div key={item.key} className="rounded-2xl border border-white/10 bg-white/[.025] p-4">
-            <p className="font-bold"><span className="mr-2 text-white/35">0{i+1}</span>{item.q}</p>
+            <p className="font-bold"><span className="mr-2 text-white/52">0{i+1}</span>{item.q}</p>
             <div className="mt-3 flex gap-2">
-              {[true,false].map(v => <button key={String(v)} onClick={() => setAnswers(a => ({...a,[item.key]:v}))} className={`rounded-full px-4 py-2 text-sm font-black transition ${answers[item.key]===v ? "bg-[#d9ff58] text-[#07100e]" : "border border-white/10 bg-white/5 text-white/70 hover:bg-white/10"}`}>{v ? "Yes" : "No"}</button>)}
+              {[true,false].map(v => <button key={String(v)} onClick={() => setAnswers(a => ({...a,[item.key]:v}))} className={`rounded-full px-4 py-2 text-sm font-black transition ${answers[item.key]===v ? "bg-[#A6E878] text-[#07100e]" : "border border-white/10 bg-white/5 text-white/70 hover:bg-white/10"}`}>{v ? "Yes" : "No"}</button>)}
             </div>
           </div>
         ))}
       </div>
-      {recommendation && <div className="mt-5 rounded-2xl bg-[#d9ff58] p-5 text-[#07100e]"><div className="flex gap-3"><CheckCircle2 className="mt-0.5 shrink-0"/><div><h4 className="text-lg font-black">{recommendation.title}</h4><p className="mt-1 text-sm font-medium leading-6 opacity-75">{recommendation.body}</p><Link href={recommendation.href} className="mt-4 inline-flex items-center gap-2 font-black">{recommendation.cta}<ArrowRight size={16}/></Link></div></div></div>}
-      {completed > 0 && <button onClick={() => setAnswers({})} className="mt-4 inline-flex items-center gap-2 text-xs font-bold text-white/40 hover:text-white"><RotateCcw size={13}/> Reset</button>}
-      <p className="mt-5 text-xs leading-5 text-white/35">Operational triage only. This checker is not a legal determination.</p>
+      {recommendation && <div className="mt-5 rounded-2xl border border-[#A6E878]/35 bg-[#A6E878]/10 p-5 text-white"><div className="flex gap-3"><CheckCircle2 className="mt-0.5 shrink-0"/><div><h4 className="text-lg font-black">{recommendation.title}</h4><p className="mt-1 text-sm font-medium leading-6 opacity-75">{recommendation.body}</p><Link href={recommendation.href} className="mt-4 inline-flex items-center gap-2 rounded-xl bg-[#A6E878] px-4 py-2.5 font-black text-[#07100e]">{recommendation.cta}<ArrowRight size={16}/></Link></div></div></div>}
+      {completed > 0 && <button onClick={() => setAnswers({})} className="mt-4 inline-flex items-center gap-2 text-xs font-bold text-white/56 hover:text-white"><RotateCcw size={13}/> Reset</button>}
+      <p className="mt-5 text-xs leading-5 text-white/52">Operational triage only. This checker is not a legal determination.</p>
     </div>
   );
 }

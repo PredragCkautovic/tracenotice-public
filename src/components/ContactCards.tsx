@@ -9,5 +9,5 @@ const cards = [
 ] as const;
 
 export function ContactCards(){
-  return <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">{cards.map(({icon:Icon,...c})=><Link href={c.href} key={c.tag} className="group rounded-3xl border border-white/10 bg-white/[.025] p-6 transition hover:-translate-y-1 hover:border-[#d9ff58]/40 hover:bg-white/[.04]"><Icon className="text-[#d9ff58]"/><p className="mt-8 text-xs font-black uppercase tracking-[.18em] text-white/40">{c.tag}</p><h3 className="mt-2 text-xl font-black leading-tight">{c.title}</h3><p className="mt-3 text-sm leading-6 text-white/50">{c.body}</p><p className="mt-6 text-sm font-black text-[#d9ff58]">{c.cta} →</p></Link>)}</div>
+  return <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">{cards.map(({icon:Icon,...c})=><Link href={c.href} key={c.tag} className="group rounded-3xl border border-white/10 bg-white/[.025] p-6 transition hover:-translate-y-1 hover:border-[#A6E878]/40 hover:bg-white/[.04]"><Icon className="text-[#A6E878]"/><p className="mt-8 text-xs font-black uppercase tracking-[.18em] text-white/56">{c.tag}</p><h3 className="mt-2 text-xl font-black leading-tight">{c.title}</h3><p className="mt-3 text-sm leading-6 text-white/64">{c.body}</p><p className="mt-6 text-sm font-black text-[#A6E878]">{c.cta} →</p></Link>)}</div>
 }
