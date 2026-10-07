@@ -34,9 +34,9 @@ export default function Home() {
               <h1 className="text-balance text-[clamp(3.6rem,8vw,8.6rem)] font-black leading-[.82] tracking-[-.075em]">Ship the AI.<br/><span className="text-[#d9ff58]">Keep the proof.</span></h1>
               <p className="mt-8 max-w-3xl text-balance text-lg leading-8 text-white/60 md:text-2xl md:leading-9">TraceNotice turns live AI transparency questions into exact implementation work, acceptance tests, and retained release evidence—before the client handoff becomes a compliance scramble.</p>
               <div className="mt-9 flex flex-wrap gap-3">
-                <Link href="/checkout?plan=audit" className="inline-flex items-center gap-2 rounded-2xl bg-[#d9ff58] px-6 py-4 font-black text-[#07100e] transition hover:-translate-y-0.5">Start agency pilot — €490 <ArrowRight size={18}/></Link>
-                <Link href="/scope-check" className="rounded-2xl border border-white/15 bg-white/5 px-6 py-4 font-black transition hover:bg-white/10">Run free scope check</Link>
-                <Link href="/sample" className="rounded-2xl border border-white/15 px-6 py-4 font-black text-white/70 transition hover:text-white">Inspect sample</Link>
+                <Link href="/checkout?plan=snapshot" className="inline-flex items-center gap-2 rounded-2xl bg-[#d9ff58] px-6 py-4 font-black text-[#07100e] transition hover:-translate-y-0.5">Fix one AI surface — €190 <ArrowRight size={18}/></Link>
+                <Link href="/checkout?plan=audit" className="rounded-2xl border border-white/15 bg-white/5 px-6 py-4 font-black transition hover:bg-white/10">Agency pilot — €490</Link>
+                <Link href="/scope-check" className="rounded-2xl border border-white/15 px-6 py-4 font-black text-white/70 transition hover:text-white">Free scope check</Link>
               </div>
             </div>
             <div className="glow rounded-[2rem] border border-white/10 bg-[#0c1714]/90 p-5 md:p-7">
