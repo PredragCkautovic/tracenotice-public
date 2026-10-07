@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CheckCircle2, CircleAlert, Code2, FileCheck2 } from "lucide-react";
 
-export const metadata: Metadata = { title: "Sample output", description: "Example TraceNotice implementation brief for a public AI assistant surface." };
+export const metadata: Metadata = { title: "Sample output", description: "Example TraceNotice implementation brief for a public AI assistant surface.", alternates: { canonical: "/sample/" } };
 
 export default function SamplePage(){
   return <div className="mx-auto max-w-6xl px-5 py-16 lg:px-8 lg:py-24"><p className="text-xs font-black uppercase tracking-[.2em] text-[#A6E878]">Sample implementation brief</p><h1 className="mt-4 text-5xl font-black tracking-[-.055em] md:text-7xl">What a buyer actually receives.</h1><p className="mt-5 max-w-3xl text-lg leading-8 text-white/64">Illustrative example for a fictional public AI support assistant. This shows the structure of the operational output, not a legal conclusion about a real company.</p>

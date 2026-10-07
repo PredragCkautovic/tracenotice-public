@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { EyeOff, LockKeyhole, ShieldCheck } from "lucide-react";
 
-export const metadata: Metadata = { title: "Security & evidence handling" };
+export const metadata: Metadata = { title: "Security & evidence handling", alternates: { canonical: "/security/" } };
 
 export default function SecurityPage(){
   const items=[

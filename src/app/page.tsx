@@ -1,9 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import {
   ArrowRight, AudioWaveform, Bot, Check, CheckCircle2, Code2, FileCheck2, FileText,
   Layers3, MessageCircle, RotateCcw, ShieldCheck, Sparkles, WandSparkles
 } from "lucide-react";
 import { site } from "@/lib/site";
+
+export const metadata: Metadata = { alternates: { canonical: "/" } };
 
 const steps = [
   { n: "1", icon: MessageCircle, title: "Tell us about your AI surface", body: "Share the public chat, voice, or generative AI experience that needs a release review." },

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, ChartNoAxesCombined, CircleDollarSign, Network, Route } from "lucide-react";
 
-export const metadata: Metadata = { title: "Investor brief", description: "TraceNotice investor brief: early-stage Article 50 implementation and release-evidence infrastructure." };
+export const metadata: Metadata = { title: "Investor brief", description: "TraceNotice investor brief: early-stage Article 50 implementation and release-evidence infrastructure.", alternates: { canonical: "/investors/" } };
 
 export default function InvestorsPage(){
   return <div className="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-24">

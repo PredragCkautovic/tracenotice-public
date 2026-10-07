@@ -4,7 +4,7 @@ import { ArrowRight, Check, FileCheck2, RefreshCcw, Users, Workflow } from "luci
 import { PayPalButton } from "@/components/PayPalButton";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = { title: "Agency release gate", description: "A white-label-ready Article 50 release workflow for AI, web, and automation agencies." };
+export const metadata: Metadata = { title: "Agency release gate", description: "A white-label-ready Article 50 release workflow for AI, web, and automation agencies.", alternates: { canonical: "/agency/" } };
 
 export default function AgencyPage(){
   const offer=site.offers.audit;

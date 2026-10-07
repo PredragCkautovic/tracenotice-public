@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Building2, Handshake, Mail, Rocket, ShoppingCart } from "lucide-react";
 
-export const metadata: Metadata = { title: "Contact", description: "Choose the right TraceNotice path for customer, agency, partner, or investor conversations." };
+export const metadata: Metadata = { title: "Contact", description: "Choose the right TraceNotice path for customer, agency, partner, or investor conversations.", alternates: { canonical: "/contact/" } };
 
 const email = "pckautovic@gmail.com";
 const mailto = (subject: string, body: string) => `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;

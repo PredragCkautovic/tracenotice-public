@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Blocks, BriefcaseBusiness, Scale, Waypoints } from "lucide-react";
 
-export const metadata: Metadata = { title: "Partners", description: "Partner with TraceNotice around AI deployment, provenance, governance, and release evidence workflows." };
+export const metadata: Metadata = { title: "Partners", description: "Partner with TraceNotice around AI deployment, provenance, governance, and release evidence workflows.", alternates: { canonical: "/partners/" } };
 
 export default function PartnersPage(){
   const profiles=[

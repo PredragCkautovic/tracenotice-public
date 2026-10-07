@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Download, Mail, ShieldCheck } from "lucide-react";
 
-export const metadata: Metadata = { title: "Delivery", robots: { index: false, follow: false } };
+export const metadata: Metadata = { title: "Delivery", robots: { index: false, follow: false }, alternates: { canonical: "/thanks/" } };
 
 const intakeHref = `mailto:pckautovic@gmail.com?subject=${encodeURIComponent("TraceNotice paid intake")}&body=${encodeURIComponent("Hi Predrag,\n\nPayPal payer email: \nPlan purchased: €190 / €490 / €2,500\nPublic AI surface URL(s): \nCompany / product: \nNotes: \n\nPublic/non-confidential information only.")}`;
 
