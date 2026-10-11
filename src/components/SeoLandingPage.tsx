@@ -26,7 +26,7 @@ export function SeoLandingPage({ slug, eyebrow, title, lead, updated = "7 Octobe
     headline: title,
     description: lead,
     datePublished: "2026-10-07",
-    dateModified: "2026-10-07",
+    dateModified: updated === "12 October 2026" ? "2026-10-12" : "2026-10-07",
     mainEntityOfPage: url,
     author: { "@type": "Organization", name: "TraceNotice", url: "https://tracenotice.com/" },
     publisher: { "@type": "Organization", name: "TraceNotice", url: "https://tracenotice.com/" },
@@ -64,6 +64,8 @@ export function SeoLandingPage({ slug, eyebrow, title, lead, updated = "7 Octobe
             <p className="mt-5 text-sm font-black">Need one live surface reviewed?</p>
             <p className="mt-2 text-sm leading-6 text-white/62">Send a public URL. The €190 review turns the observed surface into implementation work, acceptance criteria, and an evidence checklist.</p>
             <Link href="/checkout?plan=snapshot" className="cta-green mt-5 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-[#A6E878] px-4 py-3 text-sm font-black text-[#07100e]">Start €190 review <ArrowRight size={16}/></Link>
+            <Link href="/scope-check/" className="mt-2 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl border border-white/12 bg-white/[.04] px-4 py-3 text-sm font-black text-white/78 transition hover:bg-white/[.08] hover:text-white">Free 2-minute scope check <ArrowRight size={15}/></Link>
+            <Link href="/sample/" className="mt-3 block text-center text-xs font-bold text-white/52 transition hover:text-white/80">See sample output before deciding →</Link>
           </aside>
         </header>
 
