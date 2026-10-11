@@ -64,13 +64,11 @@ jobs:
 
           for path in ["out/checkout/index.html","out/thanks/index.html"]:
               r=robots_content(path)
-              print(path, "robots=", r)
               if "noindex" not in r: errors.append(f"{path} is not noindex")
 
           for route in ["article-50-ai-act","article-50-checklist","ai-chatbot-disclosure","voice-ai-disclosure","ai-generated-content-labeling"]:
               path=f"out/{route}/index.html"
               r=robots_content(path)
-              print(path, "robots=", r or "(no robots meta; inherits indexability)")
               if "noindex" in r: errors.append(f"{path} unexpectedly noindex")
               html=Path(path).read_text()
               canonical=f'https://tracenotice.com/{route}/'
@@ -87,3 +85,74 @@ jobs:
               sys.exit(1)
           print("RECOVERY VALIDATION PASS")
           PY
+
+  live-verify:
+    needs: validate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify live Hostinger production from an independent network
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE=https://tracenotice.com
+          tmp=$(mktemp -d)
+          trap 'rm -rf "$tmp"' EXIT
+
+          get200() {
+            local url="$1" ua="${2:-Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/154 Safari/537.36}"
+            local out="$tmp/body"
+            local code
+            code=$(curl -fsS -L --max-time 25 -A "$ua" -H 'Cache-Control: no-cache' -o "$out" -w '%{http_code}' "$url")
+            test "$code" = 200
+          }
+
+          for path in / /agency/ /contact/ /sample/ /scope-check/ /article-50-ai-act/ /article-50-checklist/ /ai-chatbot-disclosure/ /voice-ai-disclosure/ /ai-generated-content-labeling/ /sitemap.xml /robots.txt /llms.txt /og/tracenotice-og.png; do
+            get200 "$BASE$path"
+            echo "200 $path"
+          done
+
+          KEY=77e6c9fe9d0423181cd20704a78b1c52
+          keybody=$(curl -fsS --max-time 20 "$BASE/$KEY.txt" | tr -d '\r\n')
+          test "$keybody" = "$KEY"
+          echo "IndexNow key live"
+
+          for page in /article-50-ai-act/ /article-50-checklist/ /ai-chatbot-disclosure/ /voice-ai-disclosure/ /ai-generated-content-labeling/; do
+            body=$(curl -fsS -L --max-time 25 "$BASE$page")
+            ! grep -qi 'noindex' <<<"$body"
+            grep -qi "rel=\"canonical\"" <<<"$body"
+          done
+
+          for page in '/checkout/?plan=snapshot' /thanks/; do
+            body=$(curl -fsS -L --max-time 25 "$BASE$page")
+            grep -qi 'noindex' <<<"$body"
+          done
+
+          mobile='Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 Version/18.0 Mobile/15E148 Safari/604.1'
+          get200 "$BASE/" "$mobile"
+          grep -qi 'name="viewport"' "$tmp/body"
+          grep -q 'Ship the AI' "$tmp/body"
+          echo 'mobile markup pass'
+
+          declare -A bots
+          bots[Googlebot]='Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
+          bots[Bingbot]='Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)'
+          bots[OAI-SearchBot]='OAI-SearchBot/1.0; +https://openai.com/searchbot'
+          for name in Googlebot Bingbot OAI-SearchBot; do
+            get200 "$BASE/article-50-ai-act/" "${bots[$name]}"
+            grep -qi 'Article 50' "$tmp/body"
+            ! grep -qi 'noindex' "$tmp/body"
+            echo "$name markup pass"
+          done
+
+          headers=$(curl -fsSI --max-time 20 https://www.tracenotice.com/ | tr -d '\r')
+          grep -Eq '^HTTP/.* 30[1278]' <<<"$headers"
+          grep -Eqi '^location: https://tracenotice.com/?$' <<<"$headers"
+          echo 'www redirect pass'
+
+          for payment in PLB-DGCNMXS725LE PLB-TTFVYVVFUXK5 PLB-29SWYAFW7TJE; do
+            code=$(curl -sS -L --max-time 25 -o /dev/null -w '%{http_code}' "https://www.paypal.com/ncp/payment/$payment")
+            [[ "$code" =~ ^[23] ]]
+            echo "PayPal $payment HTTP $code"
+          done
+
+          echo 'LIVE PRODUCTION VERIFICATION PASS'
