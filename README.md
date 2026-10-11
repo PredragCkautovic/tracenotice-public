@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TraceNotice
 
-## Getting Started
+TraceNotice is technical implementation support for **EU AI Act Article 50** release surfaces. It reviews observable public AI chat, voice and generative-AI experiences and turns findings into exact implementation work, acceptance tests and release-evidence checklists.
 
-First, run the development server:
+**Live service:** https://tracenotice.com/
+
+TraceNotice is not a law firm, does not provide legal certification, and does not claim that a technical review proves legal compliance.
+
+## What TraceNotice delivers
+
+The core workflow is deliberately operational:
+
+1. **Observed public state** — what the user can actually see or hear in the reviewed release.
+2. **Exact implementation change** — wording, placement, timing and engineering work where supportable.
+3. **Acceptance test** — a reproducible QA check for the relevant surface, locale and device/channel.
+4. **Evidence to retain** — a concise release record tied to the acceptance criteria.
+5. **Remediation re-check** — included where the selected offer provides one.
+
+This is intentionally different from a generic compliance checklist, disclosure-text generator or legal memo.
+
+## Fixed-scope commercial offers
+
+- **€190 — AI Surface Fix:** one live public AI surface, with an implementation-ready release ticket.  
+  https://tracenotice.com/checkout/?plan=snapshot
+- **€490 — Agency Release Gate:** up to three public client AI surfaces, white-label-ready handoff and one remediation re-check per surface.  
+  https://tracenotice.com/checkout/?plan=audit
+- **€2,500 — Implementation Sprint:** deeper multi-surface remediation and engineering handoff.  
+  https://tracenotice.com/checkout/?plan=sprint
+
+Payment is handled by PayPal. Standard reviews use **public/non-confidential inputs only**; do not send credentials, private customer data or confidential production material.
+
+## Free entry points
+
+- **2-minute scope check:** https://tracenotice.com/scope-check/
+- **Sample output:** https://tracenotice.com/sample/
+- **Agency mini-scan:** https://tracenotice.com/agency/
+
+The free agency mini-scan uses one public surface and returns a concise observed-state note, one concrete implementation improvement where supportable, and what the paid pilot adds.
+
+## Article 50 implementation resources
+
+- Article 50 overview: https://tracenotice.com/article-50-ai-act/
+- Practical implementation checklist: https://tracenotice.com/article-50-checklist/
+- **Release-evidence pack guide:** https://tracenotice.com/article-50-evidence-pack/
+- Copyable evidence-pack template: https://tracenotice.com/downloads/article-50-evidence-pack-template.md
+- Chatbot disclosure guide: https://tracenotice.com/ai-chatbot-disclosure/
+- Voice AI disclosure guide: https://tracenotice.com/voice-ai-disclosure/
+- Generated-content labelling/marking guide: https://tracenotice.com/ai-generated-content-labeling/
+
+Primary official sources used by the site include the European Commission Article 50 guidance and Q&A.
+
+## Production architecture
+
+- Next.js 16
+- React 19
+- TypeScript
+- Tailwind CSS
+- Static export
+- Hostinger production hosting
+- PayPal hosted checkout
+
+The production source of truth is the `main` branch of this repository. The site is built as a static export and deployed to Hostinger; this repository is **not** a Vercel deployment target.
+
+## Local development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+bun install --frozen-lockfile
+bun run lint
+bun x tsc --noEmit
+bun run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Run the development server with:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+bun run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Search/discovery controls
 
-## Learn More
+Production publishes:
 
-To learn more about Next.js, take a look at the following resources:
+- `robots.txt`
+- `sitemap.xml`
+- `llms.txt`
+- canonical metadata on public search pages
+- IndexNow key/submission support
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Public implementation resources are indexable. Checkout, thanks and private operational surfaces are intentionally excluded from indexing.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Security and data boundary
 
-## Deploy on Vercel
+TraceNotice's standard public-surface workflow is designed around public/non-confidential material. Do not commit or submit credentials, private keys, production secrets, personal/customer data or confidential source material.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+See https://tracenotice.com/security/ for the public handling boundary.
