@@ -25,38 +25,65 @@ jobs:
       - name: Build static export
         run: bun run build
       - name: Validate exported revenue and SEO surfaces
-        shell: bash
         run: |
-          set -euo pipefail
-          test -f out/index.html
-          test -f out/agency/index.html
-          test -f out/contact/index.html
-          test -f out/sample/index.html
-          test -f out/scope-check/index.html
-          test -f out/checkout/index.html
-          test -f out/thanks/index.html
-          test -f out/article-50-ai-act/index.html
-          test -f out/article-50-checklist/index.html
-          test -f out/ai-chatbot-disclosure/index.html
-          test -f out/voice-ai-disclosure/index.html
-          test -f out/ai-generated-content-labeling/index.html
-          test -f out/robots.txt
-          test -f out/sitemap.xml
-          test -f out/llms.txt
-          test -f out/a66597bac3557804c13365f6119d290f.txt
-          grep -q 'a66597bac3557804c13365f6119d290f' out/a66597bac3557804c13365f6119d290f.txt
-          grep -q 'https://tracenotice.com/article-50-ai-act/' out/sitemap.xml
-          grep -q 'https://tracenotice.com/article-50-checklist/' out/sitemap.xml
-          grep -q 'https://tracenotice.com/ai-chatbot-disclosure/' out/sitemap.xml
-          grep -q 'https://tracenotice.com/voice-ai-disclosure/' out/sitemap.xml
-          grep -q 'https://tracenotice.com/ai-generated-content-labeling/' out/sitemap.xml
-          grep -q 'PLB-DGCNMXS725LE' out/checkout/index.html
-          grep -q 'PLB-TTFVYVVFUXK5' out/checkout/index.html
-          grep -q 'PLB-29SWYAFW7TJE' out/checkout/index.html
-          grep -qi 'noindex' out/checkout/index.html
-          grep -qi 'noindex' out/thanks/index.html
-          ! grep -qi 'noindex' out/article-50-ai-act/index.html
-          ! grep -qi 'noindex' out/article-50-checklist/index.html
-          ! grep -qi 'noindex' out/ai-chatbot-disclosure/index.html
-          ! grep -qi 'noindex' out/voice-ai-disclosure/index.html
-          ! grep -qi 'noindex' out/ai-generated-content-labeling/index.html
+          python3 - <<'PY'
+          from pathlib import Path
+          import re, sys
+
+          required = [
+              "out/index.html", "out/agency/index.html", "out/contact/index.html",
+              "out/sample/index.html", "out/scope-check/index.html", "out/checkout/index.html",
+              "out/thanks/index.html", "out/article-50-ai-act/index.html",
+              "out/article-50-checklist/index.html", "out/ai-chatbot-disclosure/index.html",
+              "out/voice-ai-disclosure/index.html", "out/ai-generated-content-labeling/index.html",
+              "out/robots.txt", "out/sitemap.xml", "out/llms.txt",
+              "out/a66597bac3557804c13365f6119d290f.txt",
+          ]
+          errors=[]
+          for path in required:
+              if not Path(path).is_file(): errors.append(f"missing {path}")
+
+          key="a66597bac3557804c13365f6119d290f"
+          if Path(f"out/{key}.txt").read_text().strip()!=key: errors.append("IndexNow key file mismatch")
+
+          sitemap=Path("out/sitemap.xml").read_text()
+          for route in ["article-50-ai-act","article-50-checklist","ai-chatbot-disclosure","voice-ai-disclosure","ai-generated-content-labeling"]:
+              url=f"https://tracenotice.com/{route}/"
+              if url not in sitemap: errors.append(f"sitemap missing {url}")
+
+          checkout=Path("out/checkout/index.html").read_text()
+          for pid in ["PLB-DGCNMXS725LE","PLB-TTFVYVVFUXK5","PLB-29SWYAFW7TJE"]:
+              if pid not in checkout: errors.append(f"checkout missing PayPal id {pid}")
+
+          def robots_content(path):
+              html=Path(path).read_text()
+              vals=re.findall(r'<meta[^>]+name=["\']robots["\'][^>]+content=["\']([^"\']+)', html, flags=re.I)
+              if not vals:
+                  vals=re.findall(r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+name=["\']robots["\']', html, flags=re.I)
+              return " | ".join(vals).lower()
+
+          for path in ["out/checkout/index.html","out/thanks/index.html"]:
+              r=robots_content(path)
+              print(path, "robots=", r)
+              if "noindex" not in r: errors.append(f"{path} is not noindex")
+
+          for route in ["article-50-ai-act","article-50-checklist","ai-chatbot-disclosure","voice-ai-disclosure","ai-generated-content-labeling"]:
+              path=f"out/{route}/index.html"
+              r=robots_content(path)
+              print(path, "robots=", r or "(no robots meta; inherits indexability)")
+              if "noindex" in r: errors.append(f"{path} unexpectedly noindex")
+              html=Path(path).read_text()
+              canonical=f'https://tracenotice.com/{route}/'
+              if canonical not in html: errors.append(f"{path} missing canonical {canonical}")
+
+          robots=Path("out/robots.txt").read_text().lower()
+          if "sitemap: https://tracenotice.com/sitemap.xml" not in robots: errors.append("robots.txt missing sitemap declaration")
+          if "disallow: /checkout/" not in robots: errors.append("robots.txt should disallow checkout")
+          if "disallow: /thanks/" not in robots: errors.append("robots.txt should disallow thanks")
+
+          if errors:
+              print("RECOVERY VALIDATION FAILED:")
+              for e in errors: print(" -", e)
+              sys.exit(1)
+          print("RECOVERY VALIDATION PASS")
+          PY
