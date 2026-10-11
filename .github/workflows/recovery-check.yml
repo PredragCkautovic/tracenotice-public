@@ -1,0 +1,62 @@
+name: TraceNotice recovery check
+
+on:
+  push:
+    branches: [recovery-check-20261012]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.4.2
+      - name: Install
+        run: bun install --frozen-lockfile
+      - name: Lint
+        run: bun run lint
+      - name: Typecheck
+        run: bun x tsc --noEmit
+      - name: Build static export
+        run: bun run build
+      - name: Validate exported revenue and SEO surfaces
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f out/index.html
+          test -f out/agency/index.html
+          test -f out/contact/index.html
+          test -f out/sample/index.html
+          test -f out/scope-check/index.html
+          test -f out/checkout/index.html
+          test -f out/thanks/index.html
+          test -f out/article-50-ai-act/index.html
+          test -f out/article-50-checklist/index.html
+          test -f out/ai-chatbot-disclosure/index.html
+          test -f out/voice-ai-disclosure/index.html
+          test -f out/ai-generated-content-labeling/index.html
+          test -f out/robots.txt
+          test -f out/sitemap.xml
+          test -f out/llms.txt
+          test -f out/a66597bac3557804c13365f6119d290f.txt
+          grep -q 'a66597bac3557804c13365f6119d290f' out/a66597bac3557804c13365f6119d290f.txt
+          grep -q 'https://tracenotice.com/article-50-ai-act/' out/sitemap.xml
+          grep -q 'https://tracenotice.com/article-50-checklist/' out/sitemap.xml
+          grep -q 'https://tracenotice.com/ai-chatbot-disclosure/' out/sitemap.xml
+          grep -q 'https://tracenotice.com/voice-ai-disclosure/' out/sitemap.xml
+          grep -q 'https://tracenotice.com/ai-generated-content-labeling/' out/sitemap.xml
+          grep -q 'PLB-DGCNMXS725LE' out/checkout/index.html
+          grep -q 'PLB-TTFVYVVFUXK5' out/checkout/index.html
+          grep -q 'PLB-29SWYAFW7TJE' out/checkout/index.html
+          grep -qi 'noindex' out/checkout/index.html
+          grep -qi 'noindex' out/thanks/index.html
+          ! grep -qi 'noindex' out/article-50-ai-act/index.html
+          ! grep -qi 'noindex' out/article-50-checklist/index.html
+          ! grep -qi 'noindex' out/ai-chatbot-disclosure/index.html
+          ! grep -qi 'noindex' out/voice-ai-disclosure/index.html
+          ! grep -qi 'noindex' out/ai-generated-content-labeling/index.html
