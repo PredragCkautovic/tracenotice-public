@@ -1,0 +1,90 @@
+name: TraceNotice conversion release check
+
+on:
+  push:
+    branches: [revenue-conversion-20261012]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.4.2
+      - name: Install
+        run: bun install --frozen-lockfile
+      - name: Lint
+        run: bun run lint
+      - name: Typecheck
+        run: bun x tsc --noEmit
+      - name: Build static export
+        run: bun run build
+      - name: Validate conversion and revenue surfaces
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re, sys
+
+          errors=[]
+          required=[
+            "out/index.html",
+            "out/article-50-evidence-pack/index.html",
+            "out/article-50-checklist/index.html",
+            "out/scope-check/index.html",
+            "out/sample/index.html",
+            "out/checkout/index.html",
+            "out/thanks/index.html",
+            "out/downloads/article-50-evidence-pack-template.md",
+            "out/sitemap.xml",
+            "out/robots.txt",
+            "out/llms.txt",
+          ]
+          for path in required:
+            if not Path(path).is_file(): errors.append(f"missing {path}")
+
+          evidence=Path("out/article-50-evidence-pack/index.html").read_text(errors="ignore")
+          if "https://tracenotice.com/article-50-evidence-pack/" not in evidence:
+            errors.append("evidence page missing canonical")
+          if re.search(r'<meta[^>]+name=["\']robots["\'][^>]+content=["\'][^"\']*noindex', evidence, flags=re.I):
+            errors.append("evidence page unexpectedly noindex")
+          if "Article 50 evidence pack" not in evidence:
+            errors.append("evidence page marker missing")
+
+          sitemap=Path("out/sitemap.xml").read_text()
+          if "https://tracenotice.com/article-50-evidence-pack/" not in sitemap:
+            errors.append("sitemap missing evidence pack")
+
+          llms=Path("out/llms.txt").read_text()
+          if "article-50-evidence-pack" not in llms:
+            errors.append("llms.txt missing evidence pack")
+
+          bundle="\n".join(p.read_text(errors="ignore") for p in Path("out").rglob("*") if p.is_file() and p.suffix in {".html", ".js", ".json"})
+          for pid in ["PLB-DGCNMXS725LE","PLB-TTFVYVVFUXK5","PLB-29SWYAFW7TJE"]:
+            if pid not in bundle: errors.append(f"static bundle missing PayPal id {pid}")
+
+          for path in ["out/checkout/index.html", "out/thanks/index.html"]:
+            html=Path(path).read_text(errors="ignore")
+            if "noindex" not in html.lower(): errors.append(f"{path} missing noindex")
+
+          seo_bundle="\n".join(Path(p).read_text(errors="ignore") for p in [
+            "out/article-50-ai-act/index.html",
+            "out/article-50-checklist/index.html",
+            "out/article-50-evidence-pack/index.html",
+            "out/ai-chatbot-disclosure/index.html",
+            "out/voice-ai-disclosure/index.html",
+            "out/ai-generated-content-labeling/index.html",
+          ])
+          if "Free 2-minute scope check" not in seo_bundle:
+            errors.append("SEO pages missing free scope-check CTA")
+
+          if errors:
+            print("CONVERSION RELEASE CHECK FAILED")
+            for e in errors: print(" -", e)
+            sys.exit(1)
+          print("CONVERSION RELEASE CHECK PASS")
+          PY
