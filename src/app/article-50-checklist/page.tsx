@@ -20,6 +20,7 @@ export default function Page(){
     { q: "Can this be used for AI agencies with multiple client products?", a: "Yes. The same surface-by-surface structure can be repeated for separate client chat, voice or generative-AI releases." },
     { q: "What is the fastest TraceNotice starting point?", a: "The €190 review covers one public AI surface and is designed to produce a focused implementation brief, acceptance criteria and evidence checklist." },
   ]} related={[
+    { label: "Article 50 evidence-pack template", href: "/article-50-evidence-pack/" },
     { label: "Article 50 overview", href: "/article-50-ai-act/" },
     { label: "Chatbot disclosure guide", href: "/ai-chatbot-disclosure/" },
     { label: "Voice AI disclosure guide", href: "/voice-ai-disclosure/" },
