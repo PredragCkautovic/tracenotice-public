@@ -21,6 +21,10 @@ export function ScopeChecker() {
     if (score >= 3) return { title: "A live release review is a strong fit", body: "You have EU exposure plus an interactive or generative AI surface. TraceNotice can turn the observable release state into an implementation and evidence pack.", href: "/checkout?plan=snapshot", cta: "Start the €190 surface fix" };
     return { title: "Review the surface before committing", body: "There may be an Article 50 transparency question, but the current answers do not justify a larger engagement yet.", href: "/sample", cta: "See a sample first" };
   }, [answers, completed, score]);
+  const strongFit = Boolean(recommendation && recommendation.href.startsWith("/checkout"));
+  const miniScanSubject = encodeURIComponent("TraceNotice free public mini-scan — AI surface");
+  const miniScanBody = encodeURIComponent("Hi Predrag,\n\nCompany / product: \nPublic AI surface URL: \nSurface type (chat / voice / generative AI): \nWhat you want checked: \n\nI am only sending public/non-confidential information.");
+  const miniScanHref = `mailto:pckautovic@gmail.com?subject=${miniScanSubject}&body=${miniScanBody}`;
 
   return (
     <div className="rounded-[2rem] border border-white/10 bg-[#0c1714] p-5 shadow-2xl md:p-8">
@@ -35,7 +39,7 @@ export function ScopeChecker() {
           </div>
         ))}
       </div>
-      {recommendation && <div className="mt-5 rounded-2xl border border-[#A6E878]/35 bg-[#A6E878]/10 p-5 text-white"><div className="flex gap-3"><CheckCircle2 className="mt-0.5 shrink-0"/><div><h4 className="text-lg font-black">{recommendation.title}</h4><p className="mt-1 text-sm font-medium leading-6 opacity-75">{recommendation.body}</p><Link href={recommendation.href} className="cta-green mt-4 inline-flex items-center gap-2 rounded-xl bg-[#A6E878] px-4 py-2.5 font-black text-[#07100e]">{recommendation.cta}<ArrowRight size={16}/></Link></div></div></div>}
+      {recommendation && <div className="mt-5 rounded-2xl border border-[#A6E878]/35 bg-[#A6E878]/10 p-5 text-white"><div className="flex gap-3"><CheckCircle2 className="mt-0.5 shrink-0"/><div><h4 className="text-lg font-black">{recommendation.title}</h4><p className="mt-1 text-sm font-medium leading-6 opacity-75">{recommendation.body}</p><div className="mt-4 flex flex-wrap gap-2"><Link href={recommendation.href} className="cta-green inline-flex items-center gap-2 rounded-xl bg-[#A6E878] px-4 py-2.5 font-black text-[#07100e]">{recommendation.cta}<ArrowRight size={16}/></Link>{strongFit && <a href={miniScanHref} className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/[.06] px-4 py-2.5 font-black text-white transition hover:bg-white/[.1]">Free mini-scan first<ArrowRight size={15}/></a>}</div>{strongFit && <p className="mt-3 text-xs leading-5 text-white/58">Mini-scan: one public/non-confidential surface, no card required. It gives you a concise observed-state note and one concrete improvement where supportable.</p>}</div></div></div>}
       {completed > 0 && <button onClick={() => setAnswers({})} className="mt-4 inline-flex items-center gap-2 text-xs font-bold text-white/56 hover:text-white"><RotateCcw size={13}/> Reset</button>}
       <p className="mt-5 text-xs leading-5 text-white/52">Operational triage only. This checker is not a legal determination.</p>
     </div>
