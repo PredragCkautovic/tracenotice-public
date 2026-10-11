@@ -1,8 +1,9 @@
-name: TraceNotice conversion release check
+name: TraceNotice production release gate
 
 on:
   push:
-    branches: [revenue-conversion-20261012]
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -24,7 +25,7 @@ jobs:
         run: bun x tsc --noEmit
       - name: Build static export
         run: bun run build
-      - name: Validate conversion and revenue surfaces
+      - name: Validate production revenue, discovery and privacy surfaces
         run: |
           python3 - <<'PY'
           from pathlib import Path
@@ -33,8 +34,13 @@ jobs:
           errors=[]
           required=[
             "out/index.html",
-            "out/article-50-evidence-pack/index.html",
+            "out/agency/index.html",
+            "out/article-50-ai-act/index.html",
             "out/article-50-checklist/index.html",
+            "out/article-50-evidence-pack/index.html",
+            "out/ai-chatbot-disclosure/index.html",
+            "out/voice-ai-disclosure/index.html",
+            "out/ai-generated-content-labeling/index.html",
             "out/scope-check/index.html",
             "out/sample/index.html",
             "out/checkout/index.html",
@@ -45,46 +51,72 @@ jobs:
             "out/llms.txt",
           ]
           for path in required:
-            if not Path(path).is_file(): errors.append(f"missing {path}")
+              if not Path(path).is_file():
+                  errors.append(f"missing {path}")
 
-          evidence=Path("out/article-50-evidence-pack/index.html").read_text(errors="ignore")
-          if "https://tracenotice.com/article-50-evidence-pack/" not in evidence:
-            errors.append("evidence page missing canonical")
-          if re.search(r'<meta[^>]+name=["\']robots["\'][^>]+content=["\'][^"\']*noindex', evidence, flags=re.I):
-            errors.append("evidence page unexpectedly noindex")
-          if "Article 50 evidence pack" not in evidence:
-            errors.append("evidence page marker missing")
+          sitemap=Path("out/sitemap.xml").read_text(errors="ignore")
+          canonical_urls=re.findall(r"<loc>(https://tracenotice\.com/[^<]*)</loc>", sitemap)
+          if len(canonical_urls) != 16:
+              errors.append(f"expected 16 canonical sitemap URLs, found {len(canonical_urls)}")
+          if len(canonical_urls) != len(set(canonical_urls)):
+              errors.append("duplicate canonical URL in sitemap")
+          if "https://tracenotice.com/article-50-evidence-pack/" not in canonical_urls:
+              errors.append("sitemap missing evidence pack")
 
-          sitemap=Path("out/sitemap.xml").read_text()
-          if "https://tracenotice.com/article-50-evidence-pack/" not in sitemap:
-            errors.append("sitemap missing evidence pack")
-
-          llms=Path("out/llms.txt").read_text()
-          if "article-50-evidence-pack" not in llms:
-            errors.append("llms.txt missing evidence pack")
-
-          bundle="\n".join(p.read_text(errors="ignore") for p in Path("out").rglob("*") if p.is_file() and p.suffix in {".html", ".js", ".json"})
-          for pid in ["PLB-DGCNMXS725LE","PLB-TTFVYVVFUXK5","PLB-29SWYAFW7TJE"]:
-            if pid not in bundle: errors.append(f"static bundle missing PayPal id {pid}")
+          public_pages=[
+            "article-50-ai-act",
+            "article-50-checklist",
+            "article-50-evidence-pack",
+            "ai-chatbot-disclosure",
+            "voice-ai-disclosure",
+            "ai-generated-content-labeling",
+          ]
+          for route in public_pages:
+              path=Path(f"out/{route}/index.html")
+              html=path.read_text(errors="ignore")
+              canonical=f"https://tracenotice.com/{route}/"
+              if canonical not in html:
+                  errors.append(f"{route} missing canonical")
+              if re.search(r'<meta[^>]+name=["\']robots["\'][^>]+content=["\'][^"\']*noindex', html, flags=re.I):
+                  errors.append(f"{route} unexpectedly noindex")
 
           for path in ["out/checkout/index.html", "out/thanks/index.html"]:
-            html=Path(path).read_text(errors="ignore")
-            if "noindex" not in html.lower(): errors.append(f"{path} missing noindex")
+              html=Path(path).read_text(errors="ignore").lower()
+              if "noindex" not in html:
+                  errors.append(f"{path} missing noindex")
 
-          seo_bundle="\n".join(Path(p).read_text(errors="ignore") for p in [
-            "out/article-50-ai-act/index.html",
-            "out/article-50-checklist/index.html",
-            "out/article-50-evidence-pack/index.html",
-            "out/ai-chatbot-disclosure/index.html",
-            "out/voice-ai-disclosure/index.html",
-            "out/ai-generated-content-labeling/index.html",
-          ])
-          if "Free 2-minute scope check" not in seo_bundle:
-            errors.append("SEO pages missing free scope-check CTA")
+          robots=Path("out/robots.txt").read_text(errors="ignore").lower()
+          if "sitemap: https://tracenotice.com/sitemap.xml" not in robots:
+              errors.append("robots.txt missing sitemap declaration")
+          if "disallow: /checkout/" not in robots or "disallow: /thanks/" not in robots:
+              errors.append("robots.txt does not protect checkout/thanks")
+
+          llms=Path("out/llms.txt").read_text(errors="ignore")
+          for marker in ["article-50-evidence-pack", "scope-check", "checkout/?plan=snapshot"]:
+              if marker not in llms:
+                  errors.append(f"llms.txt missing {marker}")
+
+          bundle="\n".join(
+              p.read_text(errors="ignore")
+              for p in Path("out").rglob("*")
+              if p.is_file() and p.suffix in {".html", ".js", ".json"}
+          )
+          for pid in ["PLB-DGCNMXS725LE","PLB-TTFVYVVFUXK5","PLB-29SWYAFW7TJE"]:
+              if pid not in bundle:
+                  errors.append(f"static bundle missing PayPal id {pid}")
+          for marker in [
+              "Free 2-minute scope check",
+              "Request free one-surface mini-scan",
+              "Free mini-scan first",
+              "Build release evidence that shows what actually shipped",
+          ]:
+              if marker not in bundle:
+                  errors.append(f"static bundle missing conversion marker: {marker}")
 
           if errors:
-            print("CONVERSION RELEASE CHECK FAILED")
-            for e in errors: print(" -", e)
-            sys.exit(1)
-          print("CONVERSION RELEASE CHECK PASS")
+              print("TRACE NOTICE PRODUCTION GATE FAILED")
+              for e in errors:
+                  print(" -", e)
+              sys.exit(1)
+          print("TRACE NOTICE PRODUCTION GATE PASS")
           PY
