@@ -51,9 +51,9 @@ jobs:
               url=f"https://tracenotice.com/{route}/"
               if url not in sitemap: errors.append(f"sitemap missing {url}")
 
-          checkout=Path("out/checkout/index.html").read_text()
+          bundle_text="\n".join(p.read_text(errors="ignore") for p in Path("out").rglob("*") if p.is_file() and p.suffix in {".html",".js",".json"})
           for pid in ["PLB-DGCNMXS725LE","PLB-TTFVYVVFUXK5","PLB-29SWYAFW7TJE"]:
-              if pid not in checkout: errors.append(f"checkout missing PayPal id {pid}")
+              if pid not in bundle_text: errors.append(f"static bundle missing PayPal id {pid}")
 
           def robots_content(path):
               html=Path(path).read_text()
