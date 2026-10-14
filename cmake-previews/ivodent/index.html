@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="sr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow,noarchive" />
+  <title>Ivodent — privatni koncept | CMake Studio</title>
+  <meta name="description" content="Privatni koncept novog web nastupa za Ivodent, pripremljen od strane CMake Studio." />
+  <style>
+    :root{--ink:#141414;--paper:#f2efe8;--card:#faf8f3;--accent:#61d8c6;--muted:#6b6862;--line:rgba(20,20,20,.12)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+    a{color:inherit}.notice{background:#111;color:#aaa;text-align:center;padding:9px 18px;font:700 12px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.16em}.wrap{width:min(1400px,calc(100% - 40px));margin:auto}.nav{height:86px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.brand strong{display:block;font-size:21px;letter-spacing:-.04em}.brand span{display:block;margin-top:4px;font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:#777}.navlinks{display:flex;gap:26px;font-size:14px;color:#666}.navlinks a{text-decoration:none}.pill{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:14px 22px;background:var(--ink);color:#fff;text-decoration:none;font-weight:750;font-size:14px;border:0}.pill.accent{background:var(--accent);color:#10201c}.hero{min-height:680px;display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center;padding:70px 0}.eyebrow{text-transform:uppercase;letter-spacing:.16em;font-size:12px;font-weight:800;color:#777}.hero h1{font-size:clamp(58px,8vw,120px);line-height:.85;letter-spacing:-.075em;margin:18px 0 30px;max-width:900px}.hero-copy{max-width:720px;font-size:20px;line-height:1.65;color:#68645e}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}.facts{display:flex;gap:28px;flex-wrap:wrap;margin-top:36px;padding-top:20px;border-top:1px solid var(--line);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:#777}.visual{min-height:520px;background:#171717;color:#fff;border-radius:38px;padding:32px;position:relative;overflow:hidden;box-shadow:0 36px 80px rgba(0,0,0,.16)}.visual:before{content:"";position:absolute;width:360px;height:360px;border-radius:50%;right:-100px;top:-120px;background:rgba(97,216,198,.18);filter:blur(54px)}.visual-grid{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:space-between;min-height:456px}.visual-label{font:700 12px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.18em;text-transform:uppercase;color:#888}.visual h2{font-size:34px;line-height:1.05;letter-spacing:-.05em;max-width:500px}.metrics{display:grid;grid-template-columns:1fr 1fr;gap:12px}.metric{border:1px solid rgba(255,255,255,.11);background:rgba(255,255,255,.05);border-radius:24px;padding:22px}.metric.wide{grid-column:1/-1}.metric b{display:block;font-size:34px;letter-spacing:-.05em}.metric span{display:block;margin-top:7px;color:#8c8c8c;font-size:13px}.section{padding:92px 0;border-top:1px solid var(--line)}.section.soft{background:rgba(255,255,255,.42)}.grid2{display:grid;grid-template-columns:.82fr 1.18fr;gap:70px}.section h2{font-size:clamp(42px,5vw,70px);line-height:.95;letter-spacing:-.055em;margin:14px 0 22px}.section-copy{font-size:17px;line-height:1.7;color:#6b6862;max-width:650px}.services{display:grid;gap:12px}.service{background:var(--card);border:1px solid var(--line);border-radius:25px;padding:25px;display:flex;gap:20px;align-items:center}.num{font:700 12px ui-monospace,SFMono-Regular,Menlo,monospace;color:#999}.service h3{margin:0 0 5px;font-size:21px;letter-spacing:-.025em}.service p{margin:0;color:#777;font-size:14px}.dark{background:#171717;color:#fff;border-radius:38px;padding:48px}.dark .eyebrow{color:#8d8d8d}.dark p{color:#9b9b9b;max-width:700px;font-size:18px;line-height:1.65}.points{display:grid;gap:12px;align-content:center}.point{padding:25px;border:1px solid var(--line);border-radius:25px;background:rgba(255,255,255,.48);font-size:20px;font-weight:700;letter-spacing:-.025em;display:flex;gap:16px}.dot{width:12px;height:12px;border-radius:50%;background:var(--accent);margin-top:7px;flex:none}.process{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:38px}.step{min-height:220px;border:1px solid var(--line);background:var(--card);border-radius:25px;padding:24px}.step h3{margin:48px 0 10px;font-size:20px}.step p{margin:0;color:#72706a;font-size:14px;line-height:1.6}.cta{background:#151515;color:#fff;border-radius:40px;padding:58px;display:grid;grid-template-columns:1.15fr .85fr;gap:50px;align-items:end}.cta h2{font-size:clamp(48px,6.5vw,90px);margin:12px 0 22px;line-height:.9}.cta p{color:#999;line-height:1.7;max-width:700px}.cta-side{text-align:right}.price{color:#9a9a9a;font-size:14px;margin-top:18px}.footer{padding:28px 0 42px;border-top:1px solid var(--line);font-size:12px;color:#777;line-height:1.65}.footer strong{color:#444}.proof{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}.tag{border:1px solid var(--line);border-radius:999px;padding:8px 12px;font-size:12px;color:#666;background:rgba(255,255,255,.45)}
+    @media(max-width:900px){.navlinks{display:none}.hero,.grid2,.cta{grid-template-columns:1fr}.hero{padding:45px 0}.visual{min-height:470px}.process{grid-template-columns:1fr 1fr}.cta-side{text-align:left}.wrap{width:min(100% - 28px,1400px)}}
+    @media(max-width:560px){.hero h1{font-size:57px}.hero-copy{font-size:17px}.metrics,.process{grid-template-columns:1fr}.metric.wide{grid-column:auto}.dark,.cta,.visual{padding:28px;border-radius:28px}.section{padding:65px 0}.section h2{font-size:44px}.notice{font-size:11px;letter-spacing:.1em}.brand span{font-size:11px}}
+  </style>
+</head>
+<body>
+  <div class="notice">PRIVATNI KONCEPT • NIJE ZVANIČAN SAJT IVODENT-A</div>
+  <main>
+    <div class="wrap">
+      <nav class="nav">
+        <div class="brand"><strong>Ivodent</strong><span>Stomatološka ordinacija • Beograd</span></div>
+        <div class="navlinks"><a href="#usluge">Usluge</a><a href="#proces">Proces</a><a href="#kontakt">Kontakt</a></div>
+        <a class="pill" href="#kontakt">Razgovarajmo</a>
+      </nav>
+
+      <section class="hero">
+        <div>
+          <div class="eyebrow">Stomatologija • Beograd</div>
+          <h1>Osmeh koji počinje poverenjem.</h1>
+          <p class="hero-copy">Koncept modernijeg digitalnog nastupa za ordinaciju koja već nudi širok spektar stomatoloških usluga — od preventivne nege i estetske stomatologije do oralne hirurgije i implantologije.</p>
+          <div class="actions"><a class="pill accent" href="#kontakt">Zakažite pregled</a><a class="pill" href="#usluge">Pogledajte usluge</a></div>
+          <div class="facts"><span>Jasna ponuda</span><span>Mobile-first</span><span>Brz kontakt</span><span>SEO osnova</span></div>
+        </div>
+        <div class="visual">
+          <div class="visual-grid">
+            <div>
+              <div class="visual-label">Pozicioniranje</div>
+              <h2>Ozbiljna stručnost treba da izgleda ozbiljno i na prvom ekranu.</h2>
+            </div>
+            <div class="metrics">
+              <div class="metric wide"><span>Prvi utisak</span><b>Ivodent</b><span>Ordinacija sa kompletnom stomatološkom ponudom u Beogradu.</span></div>
+              <div class="metric"><b>&lt;2s</b><span>do jasne poruke</span></div>
+              <div class="metric"><b>01</b><span>glavni sledeći korak</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section id="usluge" class="section soft">
+      <div class="wrap grid2">
+        <div>
+          <div class="eyebrow">Usluge / 01</div>
+          <h2>Najvažnije usluge odmah razumljive.</h2>
+          <p class="section-copy">Umesto da posetilac traži informacije kroz veliki broj stranica, glavne usluge i put do zakazivanja dobijaju jasnu hijerarhiju.</p>
+        </div>
+        <div class="services">
+          <div class="service"><span class="num">01</span><div><h3>Oralna hirurgija i implantologija</h3><p>Visokovredna usluga predstavljena jasno i bez viška koraka.</p></div></div>
+          <div class="service"><span class="num">02</span><div><h3>Estetska stomatologija</h3><p>Vizuelno usmerena prezentacija tretmana i rezultata.</p></div></div>
+          <div class="service"><span class="num">03</span><div><h3>Preventivna i konzervativna stomatologija</h3><p>Pristupačan ulaz za pacijente koji traže svakodnevnu negu.</p></div></div>
+          <div class="service"><span class="num">04</span><div><h3>Protetika i parodontologija</h3><p>Stručnost organizovana tako da pacijent lako pronađe sledeći korak.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap grid2">
+        <div class="dark">
+          <div class="eyebrow">Zašto / 02</div>
+          <h2>Sajt kao alat za poverenje i zakazivanje.</h2>
+          <p>Cilj nije samo nov izgled. Struktura treba da posetiocu u nekoliko sekundi objasni ko ste, šta radite, zašto da vam veruje i kako da zakaže pregled.</p>
+          <div class="proof"><span class="tag">+381 11 3446 008</span><span class="tag">Mačvanska 19/4</span><span class="tag">Beograd</span></div>
+        </div>
+        <div class="points">
+          <div class="point"><span class="dot"></span><span>Jasan razlog zašto baš Ivodent</span></div>
+          <div class="point"><span class="dot"></span><span>Stručnost bez zastarelog digitalnog utiska</span></div>
+          <div class="point"><span class="dot"></span><span>Zakazivanje bez nepotrebnog trenja</span></div>
+          <div class="point"><span class="dot"></span><span>Srpska i međunarodna publika u istoj strukturi</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="proces" class="section soft">
+      <div class="wrap">
+        <div class="eyebrow">Produkcija / 03</div>
+        <h2>Od koncepta do pravog sajta.</h2>
+        <div class="process">
+          <div class="step"><span class="num">01</span><h3>Smer</h3><p>Biramo šta iz ovog koncepta ostaje i šta treba prilagoditi brendu ordinacije.</p></div>
+          <div class="step"><span class="num">02</span><h3>Sadržaj</h3><p>Ubacujemo tačne usluge, fotografije, tim, rezultate i kontakt podatke.</p></div>
+          <div class="step"><span class="num">03</span><h3>Izrada</h3><p>CMake Studio pravi brz i responzivan produkcioni sajt sa jasnim CTA putanjama.</p></div>
+          <div class="step"><span class="num">04</span><h3>Objava</h3><p>Finalni QA, SEO osnova, domen i puštanje u produkciju.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="kontakt" class="section">
+      <div class="wrap cta">
+        <div>
+          <div class="eyebrow">Sledeći korak / 04</div>
+          <h2>Pretvorimo ovaj koncept u pravi Ivodent sajt.</h2>
+          <p>Ovaj koncept je pripremljen na osnovu javno dostupnih informacija i služi samo kao predlog smera. Nije zvanični Ivodent sajt.</p>
+        </div>
+        <div class="cta-side">
+          <a class="pill accent" href="https://cmakestudio.com/start?source=ivodent-preview&business=Ivodent" rel="noopener">Pokreni projekat →</a>
+          <div class="price">CMake Studio business website projekti počinju od €1.200. Konačan obim i cena se dogovaraju pre početka rada.</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="wrap footer"><strong>Koncept pripremio CMake Studio.</strong><br />Privatni prodajni koncept napravljen iz javno dostupnih podataka. Svi nazivi i kontakt podaci pripadaju njihovim vlasnicima. Ova stranica nije odobrena niti objavljena od strane Ivodent-a.</div>
+  </main>
+</body>
+</html>
