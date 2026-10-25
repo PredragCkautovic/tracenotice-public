@@ -58,6 +58,7 @@ export default function Home() {
                 <ArrowRight size={17} className="text-white/70 transition group-hover:translate-x-1"/>
               </Link>
               <Link href="/scope-check" className="inline-flex items-center gap-2 rounded-xl border border-white/10 px-5 py-4 text-[14px] font-bold text-white/72 transition hover:bg-white/[0.04] hover:text-white">Free scope check <ArrowRight size={15}/></Link>
+              <a href="/release-kit.html" className="inline-flex items-center gap-2 rounded-xl border border-[#A6E878]/40 px-5 py-4 text-[14px] font-bold text-[#A6E878] transition hover:bg-[#A6E878]/10">Free release evidence kit <ArrowRight size={15}/></a>
             </div>
             <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-[13px] font-semibold text-white/56">
               <span>Public URL only</span><span>PayPal checkout</span><span>24h target on €190 review</span><span>No production credentials</span>
